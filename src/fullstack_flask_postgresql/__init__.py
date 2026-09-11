@@ -1,6 +1,8 @@
 """Application factory + entry point for fullstack_flask_postgresql."""
 import os
+import click
 from flask import Flask, g, session
+from flask.cli import FlaskGroup
 
 from . import db
 
@@ -40,8 +42,16 @@ def create_app(test_config=None):
                 .fetchone()
             )
 
+    @app.cli.command("init-db")
+    def init_db_command():
+        """Create / re-create all database tables."""
+        db.init_db()
+        click.echo("Initialized the database.")
+
     return app
 
 
+# ponytail: makes the project script entry behave like the `flask` CLI.
+# `uv run fullstack-flask-postgresql run` / `... init-db` / `... routes` etc.
 def main():
-    create_app().run(debug=True)
+    FlaskGroup(create_app=create_app)()
