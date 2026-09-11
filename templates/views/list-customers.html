@@ -1,0 +1,36 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Clientes Cadastrados</h1>
+  <p><a href="/views/create-customer">+ Cadastrar novo cliente</a></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF / CNPJ</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.tax_id }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>
+          <a href="/views/edit-customer/{{ customer.id }}">Editar</a>
+          <a href="/views/delete-customer/{{ customer.id }}">Excluir</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

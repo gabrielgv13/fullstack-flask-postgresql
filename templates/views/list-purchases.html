@@ -1,0 +1,35 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Histórico de Compras</h1>
+  <p><a href="/views/create-purchase">+ Registrar nova compra</a></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Cliente</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+        <th>Pagamento</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for purchase in purchases %}
+      <tr>
+        <td>{{ purchase.created_at }}</td>
+        <td>{{ purchase.customer_name }}</td>
+        <td>{{ purchase.product_name }}</td>
+        <td>{{ purchase.quantity }}</td>
+        <td>R$ {{ purchase.total }}</td>
+        <td>{{ purchase.payment_method }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

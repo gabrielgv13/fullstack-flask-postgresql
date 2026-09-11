@@ -1,0 +1,29 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Cadastro de Nota Fiscal</h1>
+  <form method="post">
+    <label for="purchase_id">Compra</label>
+    <select name="purchase_id" id="purchase_id" required>
+      <option value="">Selecione uma compra</option>
+      {% for purchase in purchases %}
+        <option value="{{ purchase.id }}">{{ purchase.id }} — {{ purchase.customer_name }} — R$ {{ purchase.total }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="number">Número da Nota Fiscal</label>
+    <input name="number" id="number" required>
+
+    <label for="issue_date">Data de Emissão</label>
+    <input type="date" name="issue_date" id="issue_date" required>
+
+    <label for="notes">Informações Adicionais</label>
+    <textarea name="notes" id="notes" rows="4"></textarea>
+
+    <input type="submit" value="Emitir Nota Fiscal">
+  </form>
+{% endblock %}

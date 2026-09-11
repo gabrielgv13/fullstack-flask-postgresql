@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Produtos</h2>
+  <ul>
+    <li><a href="/views/create-product">Cadastrar Produto</a></li>
+    <li><a href="/views/list-products">Listar Produtos</a></li>
+  </ul>
+
+  <h2>Clientes</h2>
+  <ul>
+    <li><a href="/views/create-customer">Cadastrar Cliente</a></li>
+    <li><a href="/views/list-customers">Listar Clientes</a></li>
+  </ul>
+
+  <h2>Caixa</h2>
+  <ul>
+    <li><a href="/views/create-purchase">Registrar Compra</a></li>
+    <li><a href="/views/list-purchases">Histórico de Compras</a></li>
+  </ul>
+
+  <h2>Notas Fiscais</h2>
+  <ul>
+    <li><a href="/views/create-receipt">Emitir Nota Fiscal</a></li>
+    <li><a href="/views/list-receipts">Listar Notas Fiscais</a></li>
+  </ul>
+
+  {% block dash-view %}
+  {% endblock %}
+{% endblock %}

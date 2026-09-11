@@ -1,0 +1,42 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Nota Fiscal #{{ receipt.number }}</h1>
+
+  <p><strong>Data de Emissão:</strong> {{ receipt.issue_date }}</p>
+  <p><strong>Cliente:</strong> {{ receipt.customer_name }}</p>
+  <p><strong>CPF / CNPJ:</strong> {{ receipt.customer_tax_id }}</p>
+
+  <h2>Itens</h2>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in receipt.items %}
+      <tr>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>R$ {{ item.unit_price }}</td>
+        <td>R$ {{ item.subtotal }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p><strong>Total:</strong> R$ {{ receipt.total }}</p>
+  <p><strong>Forma de Pagamento:</strong> {{ receipt.payment_method }}</p>
+
+  {% if receipt.notes %}
+  <p><strong>Observações:</strong> {{ receipt.notes }}</p>
+  {% endif %}
+{% endblock %}

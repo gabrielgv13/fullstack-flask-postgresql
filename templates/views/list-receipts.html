@@ -1,0 +1,35 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Notas Fiscais Emitidas</h1>
+  <p><a href="/views/create-receipt">+ Emitir nova nota fiscal</a></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Data de Emissão</th>
+        <th>Cliente</th>
+        <th>Valor</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for receipt in receipts %}
+      <tr>
+        <td>{{ receipt.number }}</td>
+        <td>{{ receipt.issue_date }}</td>
+        <td>{{ receipt.customer_name }}</td>
+        <td>R$ {{ receipt.total }}</td>
+        <td>
+          <a href="/views/view-receipt/{{ receipt.id }}">Visualizar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

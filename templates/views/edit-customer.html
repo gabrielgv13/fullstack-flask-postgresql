@@ -1,0 +1,27 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Editar Cliente</h1>
+  <form method="post">
+    <label for="name">Nome</label>
+    <input name="name" id="name" value="{{ customer.name }}" required>
+
+    <label for="tax_id">CPF / CNPJ</label>
+    <input name="tax_id" id="tax_id" value="{{ customer.tax_id or '' }}">
+
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email" value="{{ customer.email or '' }}">
+
+    <label for="phone">Telefone</label>
+    <input name="phone" id="phone" value="{{ customer.phone or '' }}">
+
+    <label for="address">Endereço</label>
+    <input name="address" id="address" value="{{ customer.address or '' }}">
+
+    <input type="submit" value="Salvar">
+  </form>
+{% endblock %}

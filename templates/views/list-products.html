@@ -1,0 +1,38 @@
+{% extends 'dashboard.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block dash-view %}
+  <h1>Produtos Cadastrados</h1>
+  <p><a href="/views/create-product">+ Cadastrar novo produto</a></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Código de Barras</th>
+        <th>Categoria</th>
+        <th>Preço</th>
+        <th>Estoque</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.barcode }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+          <a href="/views/edit-product/{{ product.id }}">Editar</a>
+          <a href="/views/delete-product/{{ product.id }}">Excluir</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
